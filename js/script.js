@@ -672,14 +672,13 @@ function showVaultManagementScreen(password, messages) {
     const messageListContainer = document.getElementById('messageList');
     const searchInput = document.getElementById('noteSearchInput');
 
-    // Notları en yeniden en eskiye doğru sırala
-    const sortedMessages = [...messages].sort((a, b) => new Date(b.date) - new Date(a.date));
-
     // Not listesini render eden fonksiyon
-    function renderMessageList(filteredMessages) {
+    function renderMessageList(messagesToRender) {
+        // Notları en yeniden en eskiye doğru sırala
+        const sortedMessages = [...messagesToRender].sort((a, b) => new Date(b.date) - new Date(a.date));
         const noResultMessage = searchInput && searchInput.value ? 'Aramanızla eşleşen not bulunamadı.' : 'Henüz bir not eklenmedi.';
         
-        let listHtml = filteredMessages.length > 0 ? filteredMessages.map(msg => {
+        let listHtml = sortedMessages.length > 0 ? sortedMessages.map(msg => {
             // Orijinal indeksi bulmak için sıralanmamış `messages` dizisini kullan
             const originalIndex = messages.indexOf(msg);
             const date = new Date(msg.date);
@@ -708,7 +707,7 @@ function showVaultManagementScreen(password, messages) {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
-            const filtered = sortedMessages.filter(msg => 
+            const filtered = messages.filter(msg => 
                 (msg.title && msg.title.toLowerCase().includes(searchTerm)) || 
                 (msg.content && msg.content.toLowerCase().includes(searchTerm))
             );
@@ -716,8 +715,7 @@ function showVaultManagementScreen(password, messages) {
         });
     }
 
-    // Başlangıçta sıralanmış notları göster
-    renderMessageList(sortedMessages);
+    renderMessageList(messages);
 
     // Ayarlar menüsü butonlarına olayları bağla
     document.getElementById('exportBtn').onclick = (e) => { e.preventDefault(); handleExport(); };
