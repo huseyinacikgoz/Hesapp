@@ -204,7 +204,7 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
 
 .pad{
     display:grid; grid-template-columns:repeat(4,1fr); gap:12px; flex-grow: 1;
-    flex-shrink: 1; min-height: 0; margin-top:auto; padding-bottom: 20px; touch-action: manipulation;
+    flex-shrink: 1; min-height: 0; margin-top:auto; padding-bottom: 18px; touch-action: manipulation;
 }
 
 /* Dropdown Menü Stilleri */
@@ -249,7 +249,7 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
 /* Yeni Ayarlar ve Bilgi Modal Stilleri */
 .settings-modal,
 .info-modal {
-    max-width: 420px;
+    max-width: 400px;
     width: 95%;
     display: flex;
     flex-direction: column;
@@ -290,6 +290,15 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
 }
 
 @media (max-width: 600px) {
+    /* Mobilde hesap makinesi padding'lerini eşitle */
+    .device {
+        padding-top: 18px;
+        padding-bottom: calc(18px + env(safe-area-inset-bottom));
+    }
+    .pad {
+        padding-bottom: 0;
+    }
+    
     .modal-backdrop {
         padding: 8px;
     }
@@ -301,42 +310,20 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
         padding: 8px;
     }
     
-    /* Tüm modallar için ortak mobil düzeni (kasa yönetimi stili) */
-    .modal {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-        border-radius: 18px;
-        max-height: calc(100vh - 16px);
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-    }
-    
+    /* Tüm modallar için ortak mobil düzeni - hepsi aynı genişlikte */
+    .modal,
     .settings-modal,
-    .info-modal {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-        border-radius: 18px;
-        max-height: calc(100vh - 16px);
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-    }
-    
-    /* Kasa yönetimi modalları için flexbox düzeni */
+    .info-modal,
+    .security-modal,
     #modalBackdrop .modal {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 400px;
+        width: 100% !important;
+        max-width: 400px !important;
         margin: 0 auto;
         border-radius: 18px;
         max-height: calc(100vh - 16px);
         height: auto;
+        display: flex;
+        flex-direction: column;
         padding: 0;
     }
     
@@ -417,7 +404,7 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
     #modalBackdrop .note-filter-buttons .filter-btn {
         flex: 1;
         min-width: calc(33.333% - 4px);
-        font-size: 12px !important;
+        font-size: 13.5px !important;
         padding: 6px 8px !important;
     }
     
@@ -433,11 +420,20 @@ html[data-theme="dark"] #themeToggle .sun { transform: translate(-50%, -50%) tra
     }
     
     #modalBackdrop .view-title {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
     
     #modalBackdrop .message-date {
-        font-size: 11px !important;
+        font-size: 13px !important;
+    }
+    
+    /* Not görüntüleme ekranındaki tarihleri de büyüt */
+    #modalBackdrop .note-dates {
+        font-size: 14px !important;
+    }
+    
+    #modalBackdrop .note-dates div {
+        font-size: 14px !important;
     }
     
     .security-modal {
@@ -715,6 +711,10 @@ button.key{
     color: var(--key-text);
     -webkit-user-select: none; 
     user-select: none;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
 }
 button.key.func svg {
     width: 24px;
@@ -740,6 +740,10 @@ button.op{
     color:var(--accent); 
     font-weight:600; 
     font-size: 28px; /* Operatörlerin sayılarla aynı boyutta görünmesi için */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
 }
 /* Bölme işareti için özel stil */
 button.op[data-key="/"] {
@@ -756,11 +760,42 @@ button.key.comma-key {
 }
 
 button.key.op[data-action="equals"] {
-    background-color: #ff9500; color: #fff; font-weight: 700; border: none; font-size: 28px;
-    box-shadow: 0 4px 6px rgba(255, 149, 0, 0.4); 
-    transition: background-color 0.2s, box-shadow 0.2s;
+    background: linear-gradient(to right, #ff9500, #ea580c) !important; 
+    color: #fff !important; 
+    font-weight: 700; 
+    border: none; 
+    font-size: 28px;
+    box-shadow: 0 10px 25px rgba(255, 149, 0, 0.4) !important;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
-button.key.op[data-action="equals"]:active { background-color: #e08400; }
+
+button.key.op[data-action="equals"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #ea580c, #ff9500);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+button.key.op[data-action="equals"]:hover::before {
+    opacity: 1;
+}
+
+button.key.op[data-action="equals"]:hover {
+    box-shadow: 0 10px 30px rgba(255, 149, 0, 0.5) !important;
+    transform: scale(1.05);
+}
+
+button.key.op[data-action="equals"]:active { 
+    background: linear-gradient(to right, #e08400, #c2410c) !important;
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(255, 149, 0, 0.4) !important;
+}
 
 .fake-button-equals {
     background-color: #ff9500;
@@ -780,6 +815,7 @@ button.key.op[data-action="equals"]:active { background-color: #e08400; }
 input[type="password"], textarea, input[type="text"]{
     padding:12px;border-radius:10px;border:1px solid var(--op-key-bg);font-size:16px;width:100%;
     background:var(--input-bg); color: var(--input-text);
+    box-sizing: border-box;
 }
 textarea[readonly]{
     background:var(--input-readonly-bg);
@@ -1281,9 +1317,9 @@ html[data-theme="dark"] .splash-logo svg, html[data-theme="dark"] #welcome-page 
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease-in, visibility 0.4s;
+    text-align: center; /* text-align'i visible class'ından bağımsız hale getir */
 }
 .welcome-page.visible {
-    text-align: center;
     opacity: 1;
     visibility: visible;
 }
@@ -1515,6 +1551,26 @@ html[data-theme="dark"] .orange-glow:hover {
     margin: 0;
     flex-grow: 1;
 }
+.welcome-footer-link {
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+    transition: color 0.2s ease;
+}
+.welcome-footer-link:hover {
+    color: #2563eb;
+}
+html[data-theme="dark"] .welcome-footer-link {
+    color: rgba(168, 178, 209, 1);
+}
+html[data-theme="dark"] .welcome-footer-link:hover {
+    color: #60a5fa;
+}
 
 /* Küçük Yüksekliğe Sahip Ekranlar İçin Optimizasyon */
 @media (max-height: 700px) {
@@ -1608,8 +1664,8 @@ html[data-theme="dark"] .orange-glow:hover {
     width: 100%;
 }
 .about-logo svg {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     transition: box-shadow 0.2s ease;
@@ -1752,7 +1808,7 @@ header svg,
 }
 
 /* Security modal'lar için özel padding - footer ile düzgün çalışması için */
-.modal h3{margin:0; color:var(--input-text); font-size:24px; font-weight: 800;}
+.modal h3{margin:0; color:var(--input-text); font-size:20px; font-weight: 700;}
 .modal-header { 
     display: flex; 
     align-items: center; 
@@ -1817,8 +1873,8 @@ header svg,
     }
     
     .about-logo svg {
-        width: 60px;
-        height: 60px;
+        width: 75px;
+        height: 75px;
         margin-bottom: 8px;
     }
     
@@ -1862,7 +1918,7 @@ header svg,
     opacity: 0.8;
 }
 
-.field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;padding: 0 1.5px;}
 
 /* Not Tarihleri Stilleri */
 .note-dates {
@@ -1897,10 +1953,21 @@ header svg,
     border-radius: 10px !important;
 }
 
+/* Modal içindeki input'lar için özel stil - her iki tarafta eşit boşluk için */
+.modal .field input[type="password"],
+.modal .field input[type="text"],
+.modal .field textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 input[type="password"], textarea, input[type="text"]{
-    padding:12px;border-radius:10px;border:1px solid #e7eaf0;font-size:15px;width:100%;
+    padding:12px;border-radius:10px;border:1px solid #e7eaf0;font-size:15px;width:calc(100% - 3px);
     background:var(--input-bg); color: var(--input-text);
     border-color: var(--op-key-bg);
+    box-sizing: border-box;
 }
 textarea[readonly]{
     background:var(--input-readonly-bg); color:var(--input-text); 
@@ -2356,5 +2423,240 @@ header svg,
         height: 100% !important;
         min-width: 40px;
         min-height: 40px;
+    }
+}
+/* Pricing Cards */
+.pricing-card {
+    position: relative;
+    transition: all 0.3s ease;
+    border-color: rgba(209, 213, 219, 0.5) !important;
+}
+
+html[data-theme="dark"] .pricing-card {
+    border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+.pricing-card.selected {
+    border-color: #ff9500 !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.2), 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    transform: scale(1.02);
+}
+
+.pricing-card.selected .pricing-btn {
+    background: linear-gradient(to right, #ff9500, #ff6b00) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(255, 149, 0, 0.4) !important;
+}
+
+html[data-theme="dark"] .pricing-card.selected {
+    border-color: #ff9500 !important;
+    box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.pricing-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.pricing-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Welcome Page Smooth Scroll */
+.welcome-page {
+    scroll-behavior: smooth;
+}
+
+/* Hamburger Menu Button Styles */
+#welcome-hamburger-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    flex-shrink: 0;
+}
+
+#welcome-hamburger-btn:active {
+    transform: scale(0.95);
+}
+
+/* Desktop: Button is now in header, no special positioning needed */
+@media (min-width: 640px) {
+    #welcome-hamburger-btn {
+        margin-left: auto;
+    }
+}
+
+/* Hamburger Menu Dropdown Styles */
+#welcome-hamburger-menu {
+    min-width: 200px;
+    animation: slideDown 0.3s ease-out;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior: contain; /* Prevent scroll chaining */
+}
+
+html[data-theme="dark"] #welcome-hamburger-menu {
+    background-color: var(--panel) !important;
+}
+
+#welcome-hamburger-menu.show {
+    display: flex !important;
+}
+
+#welcome-hamburger-menu .welcome-menu-item {
+    text-decoration: none;
+    min-width: 180px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+#welcome-hamburger-menu .welcome-menu-item.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+}
+
+html[data-theme="dark"] #welcome-hamburger-menu .welcome-menu-item.active {
+    background: var(--action-toggle-bg);
+    color: var(--accent);
+}
+
+/* Mobile/Touch Device Styles */
+@media (max-width: 768px) {
+    #welcome-hamburger-btn {
+        /* No frame on mobile - just the icon */
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        border-radius: 0 !important;
+    }
+    
+    #welcome-hamburger-menu {
+        right: 16px;
+        top: 88px;
+        min-width: 180px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-item {
+        min-width: auto;
+        padding: 12px 16px;
+        gap: 10px;
+        min-height: 44px; /* Minimum touch target */
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-item .material-symbols-outlined {
+        font-size: 20px;
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-text {
+        font-size: 14px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    #welcome-hamburger-btn {
+        /* No frame on mobile - just the icon */
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        border-radius: 0 !important;
+    }
+    
+    #welcome-hamburger-menu {
+        right: 12px;
+        top: 84px;
+        min-width: 160px;
+        padding: 8px;
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-item {
+        padding: 10px 12px;
+        gap: 8px;
+        min-height: 44px;
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-item .material-symbols-outlined {
+        font-size: 18px;
+    }
+    
+    #welcome-hamburger-menu .welcome-menu-text {
+        font-size: 13px;
+    }
+}
+
+/* Touch Device Detection */
+@media (pointer: coarse) {
+    #welcome-hamburger-menu .welcome-menu-item {
+        min-height: 44px; /* Minimum touch target size */
+    }
+}
+
+/* Fine pointer (mouse) devices - show hover effects */
+@media (pointer: fine) {
+    #welcome-hamburger-menu .welcome-menu-item:hover {
+        transform: translateX(-2px);
+    }
+}
+
+/* Menu Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Close menu when clicking outside */
+#welcome-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: transparent;
+    display: none;
+}
+
+#welcome-menu-backdrop.show {
+    display: block;
+}
+
+/* Scroll offset for anchor links (account for header) */
+.welcome-page section {
+    scroll-margin-top: 80px;
+}
+
+/* Mobile scroll offset adjustment */
+@media (max-width: 768px) {
+    .welcome-page section {
+        scroll-margin-top: 60px;
     }
 }

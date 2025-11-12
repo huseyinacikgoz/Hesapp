@@ -8,7 +8,7 @@
 
 [🌐 Canlı Demo](https://huseyinacikgoz.com.tr/hesapp/) • [📧 İletişim](mailto:mail@huseyinacikgoz.com.tr) • [🐦 Twitter](https://x.com/huseyinacikgoz_) • [💻 GitHub](https://github.com/huseyinacikgoz)
 
-[![Version](https://img.shields.io/badge/version-1.3.7-blue.svg)](https://huseyinacikgoz.com.tr/hesapp/)
+[![Version](https://img.shields.io/badge/version-1.3.8-blue.svg)](https://huseyinacikgoz.com.tr/hesapp/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-enabled-orange.svg)](https://huseyinacikgoz.com.tr/hesapp/)
 
@@ -162,7 +162,7 @@ Katkılarınızı bekliyoruz! Lütfen:
 
 ## 📊 Versiyon
 
-**v1.3.7** - Güncel sürüm
+**v1.3.8** - Güncel sürüm
 
 ## 🔗 Bağlantılar
 

@@ -11,6 +11,9 @@ const modalNote = document.getElementById('modalNote');
 const modalTitle = document.getElementById('modalTitle');
 const vaultCloseBtn = document.getElementById('vaultCloseBtn');
 const vaultBackBtn = document.getElementById('vaultBackBtn');
+
+// Backdrop click timeout için global değişken (modal kapandığında temizlemek için)
+let backdropClickTimeout = null;
 const securityBackdrop = document.getElementById('securityBackdrop');
 const securityClose = document.getElementById('securityClose');
 const infoDropdownContainer = document.getElementById('infoDropdownContainer');
@@ -76,12 +79,62 @@ function showConfirmation(message, okText = 'Evet, Sil', cancelText = 'İptal') 
 confirmOK.onclick = () => { confirmBackdrop.style.display = 'none'; if (confirmationResolver) confirmationResolver(true); };
 confirmCancel.onclick = () => { confirmBackdrop.style.display = 'none'; if (confirmationResolver) confirmationResolver(false); };
 
+// Backdrop'a tıklayınca onay modal'ını kapat (iptal olarak)
+confirmBackdrop.onclick = (e) => {
+    if (e.target === confirmBackdrop) {
+        confirmBackdrop.style.display = 'none';
+        if (confirmationResolver) confirmationResolver(false);
+    }
+};
+
+// Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+const confirmModalElement = confirmBackdrop.querySelector('.modal');
+if (confirmModalElement) {
+    confirmModalElement.onclick = (e) => {
+        e.stopPropagation();
+    };
+}
+
 // --- Main Modal Logic ---
-export function showModal(html, note = '', isError = false, showInfo = false, showSettings = false, showBack = false) {
+export function showModal(html, note = '', isError = false, showInfo = false, showSettings = false, showBack = false, disableBackdropCloseForSeconds = 0) {
     modalContent.innerHTML = html;
     modalNote.innerHTML = note;
     modalNote.classList.toggle('error', isError);
+    
+    // Eski timeout'u temizle (eğer varsa)
+    if (backdropClickTimeout) {
+        clearTimeout(backdropClickTimeout);
+        backdropClickTimeout = null;
+    }
+    
     modalBackdrop.style.display = 'flex';
+    
+    // Backdrop click kapatma durumu - objeye referans olarak saklayalım (closure için)
+    const backdropState = { enabled: disableBackdropCloseForSeconds === 0 };
+    
+    // Eğer belirli bir süre boyunca backdrop click devre dışı bırakılacaksa
+    if (disableBackdropCloseForSeconds > 0) {
+        backdropState.enabled = false;
+        backdropClickTimeout = setTimeout(() => {
+            backdropState.enabled = true;
+            backdropClickTimeout = null;
+        }, disableBackdropCloseForSeconds * 1000);
+    }
+    
+    // Backdrop'a tıklayınca modal'ı kapat (modal içeriğine tıklandığında kapanmasın)
+    modalBackdrop.onclick = (e) => {
+        if (e.target === modalBackdrop && backdropState.enabled) {
+            hideModal();
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const modalElement = modalBackdrop.querySelector('.modal');
+    if (modalElement) {
+        modalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 
     // Yeni modal butonlarını göster/gizle
     infoBtn.style.display = showInfo ? 'flex' : 'none';
@@ -106,6 +159,12 @@ export function showModal(html, note = '', isError = false, showInfo = false, sh
 }
 
 export function hideModal() {
+    // Backdrop click timeout'u temizle
+    if (backdropClickTimeout) {
+        clearTimeout(backdropClickTimeout);
+        backdropClickTimeout = null;
+    }
+    
     modalBackdrop.style.display = 'none';
     securityBackdrop.style.display = 'none';
     termsBackdrop.style.display = 'none';
@@ -212,9 +271,10 @@ export function openVaultAccessMode() {
     
     if (hasVault()) {
         modalTitle.textContent = "Kasa Girişi";
+        // İlk 5 saniye backdrop click ile kapatmayı engelle (yanlışlıkla kapanmasın)
         showModal(
             `<div class="field"><label>Parola:</label><input id="pw" type="password" autocomplete="off"></div>`,
-            'Kasanızı açmak için parolanızı girin.', false, true, false, false
+            'Kasanızı açmak için parolanızı girin.', false, true, false, false, 5
         );
         if (updateLockoutUI()) return;
         modalOK.textContent = 'Giriş Yap';
@@ -228,18 +288,37 @@ export function openVaultAccessMode() {
                 <span class="confirm-icon warning" style="flex-shrink: 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" /></svg></span>
                 <div><strong>Bu parola, kasanızın tek anahtarıdır.</strong> Unutmanız durumunda verilerinize erişmenin başka bir yolu yoktur.</div>
              </div>
-             <div class="checkbox-field" style="margin-top: 15px; justify-content: center;">
-                <input type="checkbox" id="acceptTermsCheckbox">
-                <label for="acceptTermsCheckbox" style="font-size: 14px; color: var(--muted);">
-                    <a href="#" id="setupTermsLink" class="link-like" style="font-size: 14px;">Hizmet Sözleşmesini</a> okudum ve kabul ediyorum.
-                </label>
+             <div style="margin-top: 15px;">
+                <div class="checkbox-field" style="justify-content: flex-start;">
+                    <input type="checkbox" id="acceptTermsAndPrivacyCheckbox">
+                    <label for="acceptTermsAndPrivacyCheckbox" style="font-size: 14px; color: var(--muted);">
+                        <a href="#" id="setupTermsLink" class="link-like" style="font-size: 14px;">Hizmet Koşullarını</a> ve <a href="#" id="setupPrivacyLink" class="link-like" style="font-size: 14px;">Gizlilik Politikasını</a> okudum ve kabul ediyorum.
+                    </label>
+                </div>
             </div>`,
             '', false, true, false, false
         );
         modalOK.textContent = 'Parolayı Kaydet';
         modalOK.onclick = handleVaultSetup;
 
-        document.getElementById('setupTermsLink').onclick = (e) => { e.preventDefault(); showTermsModal(false); };
+        document.getElementById('setupTermsLink').onclick = (e) => { 
+            e.preventDefault(); 
+            // Setup modal'ını kapat, terms modal'ını aç
+            modalBackdrop.style.display = 'none';
+            showTermsModal(false, () => {
+                // Terms modal'ı kapandığında setup modal'ını tekrar aç
+                openVaultAccessMode();
+            }); 
+        };
+        document.getElementById('setupPrivacyLink').onclick = (e) => { 
+            e.preventDefault(); 
+            // Setup modal'ını kapat, privacy modal'ını aç
+            modalBackdrop.style.display = 'none';
+            showSecurityModal(() => {
+                // Privacy modal'ı kapandığında setup modal'ını tekrar aç
+                openVaultAccessMode();
+            }); 
+        };
 
         const restoreBtn = document.createElement('button');
         restoreBtn.className = 'action-toggle-btn';
@@ -373,10 +452,10 @@ async function handleVaultUnlock() {
 async function handleVaultSetup() {
     const p1 = document.getElementById('pw1').value || '';
     const p2 = document.getElementById('pw2').value || '';
-    const acceptTermsCheckbox = document.getElementById('acceptTermsCheckbox');
+    const acceptTermsAndPrivacyCheckbox = document.getElementById('acceptTermsAndPrivacyCheckbox');
 
-    if (!acceptTermsCheckbox || !acceptTermsCheckbox.checked) {
-        modalNote.textContent = 'Kasayı oluşturmak için hizmet sözleşmesini kabul etmelisiniz.';
+    if (!acceptTermsAndPrivacyCheckbox || !acceptTermsAndPrivacyCheckbox.checked) {
+        modalNote.textContent = 'Kasayı oluşturmak için hizmet koşulları ve gizlilik politikasını kabul etmelisiniz.';
         modalNote.classList.add('error');
         return;
     }
@@ -902,7 +981,16 @@ function handleExport() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `hesapp-kasa-yedek-${new Date().toISOString().slice(0, 10)}.json`;
+    // Tarih ve saat formatı: YYYY-MM-DD-HH-MM-SS
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const timestamp = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
+    a.download = `hesapp-kasa-yedek-${timestamp}.json`;
     a.click();
     URL.revokeObjectURL(url);
     a.remove();
@@ -1036,29 +1124,61 @@ function handleImport() {
 }
 
 // --- Info Modals (Terms, Security, etc.) ---
-export function showTermsModal(isPreLogin = false) {
+export function showTermsModal(isPreLogin = false, onCloseCallback = null) {
+    termsModalCloseCallback = onCloseCallback;
     termsBackdrop.style.display = 'flex';
     if (isPreLogin) {
         termsActions.style.display = 'flex'; // Ensure flex is active for two buttons
         termsActions.innerHTML = `
             <button class="link-like" id="cancelTermsBtn">Vazgeç</button>
             <button class="vault-btn" id="acceptTermsBtn">Kabul Ediyorum</button>`;
-        document.getElementById('cancelTermsBtn').onclick = () => termsBackdrop.style.display = 'none';
+        document.getElementById('cancelTermsBtn').onclick = () => {
+            termsBackdrop.style.display = 'none';
+            if (termsModalCloseCallback) {
+                termsModalCloseCallback();
+                termsModalCloseCallback = null;
+            }
+        };
         document.getElementById('acceptTermsBtn').onclick = () => {
             localStorage.setItem(TERMS_KEY, 'true');
             termsBackdrop.style.display = 'none';
+            if (termsModalCloseCallback) {
+                termsModalCloseCallback();
+                termsModalCloseCallback = null;
+            }
             openVaultAccessMode();
         };
     } else {
         termsActions.style.display = 'block'; // Override flex for single button
         termsActions.innerHTML = `<button class="vault-btn" id="termsOK" style="width: 100%; text-align: center;">Anladım</button>`;
-        document.getElementById('termsOK').onclick = () => termsBackdrop.style.display = 'none';
+        document.getElementById('termsOK').onclick = () => {
+            termsBackdrop.style.display = 'none';
+            if (termsModalCloseCallback) {
+                termsModalCloseCallback();
+                termsModalCloseCallback = null;
+            }
+        };
     }
 }
 
-export function showSecurityModal() { securityBackdrop.style.display = 'flex'; }
-export function showAboutModal() { aboutBackdrop.style.display = 'flex'; }
-export function showHowToUseModal() { howToUseBackdrop.style.display = 'flex'; }
+// Welcome page'den modal açıldığında çağrılacak callback'ler
+let securityModalCloseCallback = null;
+let termsModalCloseCallback = null;
+let aboutModalCloseCallback = null;
+let howToUseModalCloseCallback = null;
+
+export function showSecurityModal(onCloseCallback = null) {
+    securityModalCloseCallback = onCloseCallback;
+    securityBackdrop.style.display = 'flex';
+}
+export function showAboutModal(onCloseCallback = null) {
+    aboutModalCloseCallback = onCloseCallback;
+    aboutBackdrop.style.display = 'flex';
+}
+export function showHowToUseModal(onCloseCallback = null) {
+    howToUseModalCloseCallback = onCloseCallback;
+    howToUseBackdrop.style.display = 'flex';
+}
 
 function setupInfoModals() {
     // Modal backdrop'ları
@@ -1068,8 +1188,28 @@ function setupInfoModals() {
     const infoModalClose = document.getElementById('infoModalClose');
 
     // Ayarlar butonu - Modal aç
-    settingsBtn.onclick = (e) => {
+    settingsBtn.onclick = async (e) => {
         e.stopPropagation();
+        // Güvenlik: Sadece gerçek kasa açıkken sahte parola seçeneğini göster
+        let isRealVaultOpen = false;
+        if (currentVaultPassword) {
+            try {
+                const storedData = localStorage.getItem(STORAGE_KEY);
+                if (storedData) {
+                    const enc = JSON.parse(storedData);
+                    await decryptMessage(currentVaultPassword, enc);
+                    isRealVaultOpen = true; // Gerçek kasa açık
+                }
+            } catch (e) {
+                // Gerçek kasa açık değil (sahte parola ile giriş yapılmış olabilir)
+                isRealVaultOpen = false;
+            }
+        }
+        // Sahte parola seçeneğini göster/gizle
+        const honeyPasswordOption = document.getElementById('settingsHoneyPassword');
+        if (honeyPasswordOption) {
+            honeyPasswordOption.style.display = isRealVaultOpen ? 'flex' : 'none';
+        }
         settingsModalBackdrop.style.display = 'flex';
     };
 
@@ -1094,6 +1234,20 @@ function setupInfoModals() {
             infoModalBackdrop.style.display = 'none';
         }
     };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const settingsModalElement = settingsModalBackdrop.querySelector('.modal');
+    const infoModalElement = infoModalBackdrop.querySelector('.modal');
+    if (settingsModalElement) {
+        settingsModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
+    if (infoModalElement) {
+        infoModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 
     // Ayarlar modal seçenekleri
     document.getElementById('settingsChangePassword').onclick = () => {
@@ -1116,9 +1270,9 @@ function setupInfoModals() {
         settingsModalBackdrop.style.display = 'none';
         showAutoLockModal();
     };
-    document.getElementById('settingsHoneyPassword').onclick = () => {
+    document.getElementById('settingsHoneyPassword').onclick = async () => {
         settingsModalBackdrop.style.display = 'none';
-        showHoneyPasswordModal();
+        await showHoneyPasswordModal();
     };
     document.getElementById('settingsExport').onclick = () => {
         settingsModalBackdrop.style.display = 'none';
@@ -1184,12 +1338,102 @@ function setupInfoModals() {
 
     // Close buttons
     vaultCloseBtn.onclick = hideModal;
-    securityClose.onclick = () => securityBackdrop.style.display = 'none';
-    document.getElementById('securityOK').onclick = () => securityBackdrop.style.display = 'none';
-    document.getElementById('termsCloseBtn').onclick = () => termsBackdrop.style.display = 'none';
-    aboutClose.onclick = () => aboutBackdrop.style.display = 'none';
-    howToUseClose.onclick = () => howToUseBackdrop.style.display = 'none';
-    howToUseOK.onclick = () => howToUseBackdrop.style.display = 'none';
+    securityClose.onclick = () => {
+        securityBackdrop.style.display = 'none';
+        if (securityModalCloseCallback) {
+            securityModalCloseCallback();
+            securityModalCloseCallback = null;
+        }
+    };
+    const securityOK = document.getElementById('securityOK');
+    if (securityOK) {
+        securityOK.onclick = () => {
+            securityBackdrop.style.display = 'none';
+            if (securityModalCloseCallback) {
+                securityModalCloseCallback();
+                securityModalCloseCallback = null;
+            }
+        };
+    }
+    const termsCloseBtn = document.getElementById('termsCloseBtn');
+    if (termsCloseBtn) {
+        termsCloseBtn.onclick = () => {
+            termsBackdrop.style.display = 'none';
+            if (termsModalCloseCallback) {
+                termsModalCloseCallback();
+                termsModalCloseCallback = null;
+            }
+        };
+    }
+    aboutClose.onclick = () => {
+        aboutBackdrop.style.display = 'none';
+        if (aboutModalCloseCallback) {
+            aboutModalCloseCallback();
+            aboutModalCloseCallback = null;
+        }
+    };
+    howToUseClose.onclick = () => {
+        howToUseBackdrop.style.display = 'none';
+        if (howToUseModalCloseCallback) {
+            howToUseModalCloseCallback();
+            howToUseModalCloseCallback = null;
+        }
+    };
+    howToUseOK.onclick = () => {
+        howToUseBackdrop.style.display = 'none';
+        if (howToUseModalCloseCallback) {
+            howToUseModalCloseCallback();
+            howToUseModalCloseCallback = null;
+        }
+    };
+    
+    // Backdrop'a tıklayınca modal'ları kapat
+    securityBackdrop.onclick = (e) => {
+        if (e.target === securityBackdrop) {
+            securityBackdrop.style.display = 'none';
+            if (securityModalCloseCallback) {
+                securityModalCloseCallback();
+                securityModalCloseCallback = null;
+            }
+        }
+    };
+    termsBackdrop.onclick = (e) => {
+        if (e.target === termsBackdrop) {
+            termsBackdrop.style.display = 'none';
+            if (termsModalCloseCallback) {
+                termsModalCloseCallback();
+                termsModalCloseCallback = null;
+            }
+        }
+    };
+    aboutBackdrop.onclick = (e) => {
+        if (e.target === aboutBackdrop) {
+            aboutBackdrop.style.display = 'none';
+            if (aboutModalCloseCallback) {
+                aboutModalCloseCallback();
+                aboutModalCloseCallback = null;
+            }
+        }
+    };
+    howToUseBackdrop.onclick = (e) => {
+        if (e.target === howToUseBackdrop) {
+            howToUseBackdrop.style.display = 'none';
+            if (howToUseModalCloseCallback) {
+                howToUseModalCloseCallback();
+                howToUseModalCloseCallback = null;
+            }
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    [securityBackdrop, termsBackdrop, aboutBackdrop, howToUseBackdrop].forEach(backdrop => {
+        const modalElement = backdrop.querySelector('.modal');
+        if (modalElement) {
+            modalElement.onclick = (e) => {
+                e.stopPropagation();
+            };
+        }
+    });
     
     // Sürüm numarasını doğrudan body etiketinden al ve ekrana yaz.
     const appVersion = document.body.dataset.version;
@@ -1217,7 +1461,22 @@ function showAppearanceModal() {
         showCustomToast('Görünüm ayarları kaydedildi.');
     };
 
-    document.getElementById('appearanceCancelBtn').onclick = () => appearanceModalBackdrop.style.display = 'none';
+    document.getElementById('appearanceCloseBtn').onclick = () => appearanceModalBackdrop.style.display = 'none';
+    
+    // Backdrop'a tıklayınca modal'ı kapat
+    appearanceModalBackdrop.onclick = (e) => {
+        if (e.target === appearanceModalBackdrop) {
+            appearanceModalBackdrop.style.display = 'none';
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const appearanceModalElement = appearanceModalBackdrop.querySelector('.modal');
+    if (appearanceModalElement) {
+        appearanceModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 }
 
 // --- Settings Modals (Autolock, Change Password) ---
@@ -1248,8 +1507,22 @@ function showAutoLockModal() {
         showCustomToast('Otomatik kilitleme süresi güncellendi.');
         resetInactivityTimer();
     };
-    document.getElementById('autoLockCancelBtn').onclick = () => autoLockModalBackdrop.style.display = 'none';
     document.getElementById('autoLockCloseBtn').onclick = () => autoLockModalBackdrop.style.display = 'none';
+    
+    // Backdrop'a tıklayınca modal'ı kapat
+    autoLockModalBackdrop.onclick = (e) => {
+        if (e.target === autoLockModalBackdrop) {
+            autoLockModalBackdrop.style.display = 'none';
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const autoLockModalElement = autoLockModalBackdrop.querySelector('.modal');
+    if (autoLockModalElement) {
+        autoLockModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 }
 
 function showThemeModal() {
@@ -1316,8 +1589,22 @@ function showThemeModal() {
             gtag('event', 'theme_changed', { 'theme': selectedTheme });
         }
     };
-    document.getElementById('themeModalCancelBtn').onclick = () => themeModalBackdrop.style.display = 'none';
     document.getElementById('themeModalClose').onclick = () => themeModalBackdrop.style.display = 'none';
+    
+    // Backdrop'a tıklayınca modal'ı kapat
+    themeModalBackdrop.onclick = (e) => {
+        if (e.target === themeModalBackdrop) {
+            themeModalBackdrop.style.display = 'none';
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const themeModalElement = themeModalBackdrop.querySelector('.modal');
+    if (themeModalElement) {
+        themeModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 }
 
 function showChangePasswordModal(currentPassword) {
@@ -1345,7 +1632,7 @@ function showChangePasswordModal(currentPassword) {
             return;
         }
         if (newPass1 !== newPass2) {
-            noteEl.textContent = 'Yeni şifreler eşleşmiyor.';
+            noteEl.textContent = 'Yeni parolalar eşleşmiyor.';
             noteEl.classList.add('error');
             return;
         }
@@ -1363,14 +1650,46 @@ function showChangePasswordModal(currentPassword) {
             noteEl.classList.add('error');
         }
     };
-    document.getElementById('changePassCancelBtn').onclick = () => changePasswordBackdrop.style.display = 'none';
+    document.getElementById('changePassCloseBtn').onclick = () => changePasswordBackdrop.style.display = 'none';
+    
+    // Backdrop'a tıklayınca modal'ı kapat
+    changePasswordBackdrop.onclick = (e) => {
+        if (e.target === changePasswordBackdrop) {
+            changePasswordBackdrop.style.display = 'none';
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const changePassModalElement = changePasswordBackdrop.querySelector('.modal');
+    if (changePassModalElement) {
+        changePassModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 }
 
-function showHoneyPasswordModal() {
+async function showHoneyPasswordModal() {
     const honeyPass1 = document.getElementById('honeyPass1');
     const honeyPass2 = document.getElementById('honeyPass2');
     const honeyPassNote = document.getElementById('honeyPassNote');
     const honeyPassStatus = document.getElementById('honeyPassStatus');
+    
+    // Güvenlik: Sadece gerçek kasa açıkken sahte parola durumunu göster
+    // Gerçek kasa açık mı kontrol et (currentVaultPassword ile STORAGE_KEY decrypt edilebiliyorsa)
+    let isRealVaultOpen = false;
+    if (currentVaultPassword) {
+        try {
+            const storedData = localStorage.getItem(STORAGE_KEY);
+            if (storedData) {
+                const enc = JSON.parse(storedData);
+                await decryptMessage(currentVaultPassword, enc);
+                isRealVaultOpen = true; // Gerçek kasa açık
+            }
+        } catch (e) {
+            // Gerçek kasa açık değil (sahte parola ile giriş yapılmış olabilir)
+            isRealVaultOpen = false;
+        }
+    }
     
     // Mevcut sahte parolayı kontrol et (hash olarak saklanıyor)
     // Önce yeni anahtarı kontrol et, yoksa eski anahtarı migrate et
@@ -1402,11 +1721,12 @@ function showHoneyPasswordModal() {
         }
     }
     
-    if (existingHoneyPasswordData) {
+    // Güvenlik: Sadece gerçek kasa açıkken sahte parola durumunu göster
+    if (isRealVaultOpen && existingHoneyPasswordData) {
         try {
             const parsed = JSON.parse(existingHoneyPasswordData);
             if (parsed.salt && parsed.hash) {
-                // Yeni format (hash)
+                // Yeni format (hash) - sadece gerçek kasa açıkken göster
                 honeyPassStatus.textContent = '✓ Sahte parola aktif';
                 honeyPassStatus.style.background = 'var(--key-bg)';
                 honeyPassStatus.style.color = 'var(--input-text)';
@@ -1424,16 +1744,17 @@ function showHoneyPasswordModal() {
             // Geçersiz format - sil
             localStorage.removeItem(HONEY_PASSWORD_KEY);
             localStorage.removeItem(HONEY_VAULT_KEY);
-            honeyPassStatus.textContent = 'Sahte şifre belirlenmemiş';
+            honeyPassStatus.textContent = 'Sahte parola belirlenmemiş';
             honeyPassStatus.style.background = 'var(--key-bg)';
             honeyPassStatus.style.color = 'var(--muted)';
             document.getElementById('honeyPassDeleteBtn').style.display = 'none';
         }
     } else {
-        honeyPassStatus.textContent = 'Sahte şifre belirlenmemiş';
-        honeyPassStatus.style.background = 'var(--key-bg)';
-        honeyPassStatus.style.color = 'var(--muted)';
-        document.getElementById('honeyPassDeleteBtn').style.display = 'none';
+        // Gerçek kasa açık değilse veya sahte parola yoksa durum gösterme
+        honeyPassStatus.textContent = '';
+        honeyPassStatus.style.background = 'transparent';
+        honeyPassStatus.style.color = 'transparent';
+        document.getElementById('honeyPassDeleteBtn').style.display = isRealVaultOpen && existingHoneyPasswordData ? 'block' : 'none';
     }
     
     honeyPass1.value = '';
@@ -1478,7 +1799,8 @@ function showHoneyPasswordModal() {
                 gtag('event', 'feature_used', { 'feature_name': 'honey_password_set' });
             }
             honeyPasswordBackdrop.style.display = 'none';
-            showCustomToast('Sahte parola başarıyla ayarlandı!');
+            // Güvenlik: Sahte parola ayarlandığında mesaj gösterme
+            // showCustomToast('Sahte parola başarıyla ayarlandı!');
         } catch (e) {
             honeyPassNote.textContent = 'Bir hata oluştu. Lütfen tekrar deneyin.';
             honeyPassNote.classList.add('error');
@@ -1504,16 +1826,29 @@ function showHoneyPasswordModal() {
                 gtag('event', 'feature_used', { 'feature_name': 'honey_password_deleted' });
             }
             honeyPasswordBackdrop.style.display = 'none';
-            showCustomToast('Sahte parola silindi!');
+            // Güvenlik: Sahte parola silindiğinde mesaj gösterme
+            // showCustomToast('Sahte parola silindi!');
         }
     };
     
-    document.getElementById('honeyPassCancelBtn').onclick = () => {
-        honeyPasswordBackdrop.style.display = 'none';
-    };
     document.getElementById('honeyPassCloseBtn').onclick = () => {
         honeyPasswordBackdrop.style.display = 'none';
     };
+    
+    // Backdrop'a tıklayınca modal'ı kapat
+    honeyPasswordBackdrop.onclick = (e) => {
+        if (e.target === honeyPasswordBackdrop) {
+            honeyPasswordBackdrop.style.display = 'none';
+        }
+    };
+    
+    // Modal içeriğine tıklandığında event'in backdrop'a gitmesini engelle
+    const honeyPassModalElement = honeyPasswordBackdrop.querySelector('.modal');
+    if (honeyPassModalElement) {
+        honeyPassModalElement.onclick = (e) => {
+            e.stopPropagation();
+        };
+    }
 }
 
 // --- Utils ---

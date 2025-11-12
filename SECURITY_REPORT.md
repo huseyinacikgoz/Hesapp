@@ -1,7 +1,7 @@
-# Güvenlik Raporu - Hesapp v1.3.7
+# Güvenlik Raporu - Hesapp v1.3.8
 
 **Tarih:** 2024  
-**Versiyon:** v1.3.7  
+**Versiyon:** v1.3.8  
 **Durum:** ✅ Güvenlik açıkları düzeltildi
 
 ## 🔒 Güvenlik Kontrolü Sonuçları

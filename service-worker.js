@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hesapp-cache-v1.3.7';
+const CACHE_NAME = 'hesapp-cache-v1.3.8';
 const URLS_TO_CACHE = [
   '/',
   'index.html',

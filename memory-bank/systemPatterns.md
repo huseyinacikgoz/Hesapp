@@ -29,3 +29,13 @@
     2.  **Şifreleme (Veri Kaydetme):** Not içeriği (string), `AES-GCM` algoritması, türetilen anahtar ve yeni oluşturulan bir `iv` (başlatma vektörü) kullanılarak şifrelenir. Sonuç, `iv`, `salt` ve şifreli metni içeren bir JSON nesnesi olarak birleştirilir ve Base64 formatında `localStorage`'a kaydedilir.
     3.  **Şifre Çözme (Veri Okuma):** `localStorage`'dan okunan Base64 veri çözülür. İçindeki `iv` ve şifreli metin, türetilen anahtar kullanılarak `AES-GCM` ile çözülür. Başarılı olursa, orijinal not içeriği elde edilir. Anahtar yanlışsa (şifre hatalıysa), şifre çözme işlemi başarısız olur.
     4.  **Sahte Şifre Kontrolü:** Gerçek şifre ile giriş başarısız olduğunda, sistem sahte şifreyi (`hesapp_aux_key_v1`) kontrol eder. Sahte şifre doğruysa, sahte kasa (`hesapp_aux_data_v1`) açılır ve gerçek kasa içeriği gizlenir. Sahte kasa, gerçek kasa ile aynı şifreleme yöntemiyle korunur ancak ayrı bir localStorage anahtarında saklanır. Gizlilik için genel isimler kullanılır. Eski anahtar adları migration desteği ile korunmaktadır.
+
+*   **Modal Yönetimi:**
+    1.  **Backdrop Click ile Kapatma:** Tüm modallarda, backdrop (modal dışına) tıklandığında modal kapatılır. Modal içeriğine tıklandığında kapanmayı önlemek için `.modal` elementine `stopPropagation()` eklenir.
+    2.  **Zamanlayıcı Koruması:** Belirli modallarda (örn. kasa giriş modal'ı) ilk birkaç saniye boyunca backdrop click ile kapatma devre dışı bırakılabilir. Bu, yanlışlıkla modal'ın kapanmasını önler. `showModal` fonksiyonuna `disableBackdropCloseForSeconds` parametresi ile kontrol edilir.
+    3.  **Modal State Yönetimi:** Modal açık/kapalı durumu, backdrop elementinin `display` CSS özelliği ile kontrol edilir. `hideModal` fonksiyonu tüm modalları kapatır ve timeout'ları temizler.
+
+*   **Tema ve Görsel Tutarlılık:**
+    1.  **Koyu Mod Arka Plan:** Koyu modda tüm arka planlar sabit renk kullanır. Ana arka plan `var(--bg)` (#1a1b26), kartlar ve widget'lar `var(--panel)` (#24283b). Gradient'ler ve farklı renk tonları kaldırıldı.
+    2.  **Tema Uyumlu Renkler:** Hamburger menü, butonlar ve diğer UI öğeleri tema değişkenlerini (`var(--accent)`, `var(--action-toggle-bg)`, `var(--op-key-bg)`) kullanır.
+    3.  **Buton Efektleri:** Önemli butonlar (örn. "Hadi Başlayalım", hesap makinesi "=" tuşu) gradient background, shadow efektleri ve hover animasyonları ile vurgulanır.

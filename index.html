@@ -74,7 +74,7 @@
     gtag('config', 'G-603VSP2JJ4');
   </script>
 
-<link rel="stylesheet" href="css/style.css?v=1.3.7">
+<link rel="stylesheet" href="css/style.css?v=1.3.8">
 <script>
   // FOUC (Flash of Unstyled Content) önlemek için tema kodunu buraya taşıdık.
   // Bu script, sayfa render edilmeden önce çalışır.
@@ -119,7 +119,7 @@
   document.head.appendChild(script);
 </script>
 </head>
-<body class="font-display" data-version="v1.3.7">
+<body class="font-display" data-version="v1.3.8">
   <div class="device" role="application" aria-label="Hesapp">
     <div class="screen">
       <div class="display-top">
@@ -210,7 +210,7 @@
 
   <div class="modal-backdrop" id="securityBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Gizlilik Politikası ve Güvenlik</h3>
             <button class="security-close-btn" id="securityClose">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -230,20 +230,13 @@
             <hr>
 
             <h3>Resmi Gizlilik Politikası</h3>
-            <p><strong>Son Güncelleme:</strong> 11.10.2025</p>
+            <p><strong>Son Güncelleme:</strong> 11.11.2025</p>
 
             <h4>1. Veri Sorumlusu</h4>
             <p>Hesapp uygulamasının veri sorumlusu Hüseyin Açıkgöz'dür. Bu sorumluluk, uygulamanın kullanıcının cihazı üzerinde gerçekleştirdiği veri işleme faaliyetleriyle sınırlıdır. İletişim için: mail@huseyinacikgoz.com.tr</p>
 
             <h4>2. İşlenen Veriler ve Amaçları</h4>
-            <p>Hesapp, işlevselliğini sağlamak için tarayıcınızın yerel depolama (`localStorage`) alanını kullanır. Bu alanda aşağıdaki veriler saklanır:</p>
-            <ul>
-                <li><strong>Şifrelenmiş Kasa Verileri (`kasa_encrypted_v1`):</strong> Notlarınızın başlık ve içeriklerini barındıran, yukarıda açıklanan yöntemlerle şifrelenmiş veri paketi. Bu veriler, notlarınızı güvenli bir şekilde saklamak için işlenir.</li>
-                <li><strong>Sahte Parola ve Sahte Kasa (`hesapp_honey_password_v1`, `hesapp_honey_vault_v1`):</strong> Opsiyonel olarak belirleyebileceğiniz sahte parola ve sahte kasa verileri. Bu özellik, gerçek kasanızı gizlemek için kullanılır. Sahte parola ile giriş yapıldığında, boş veya sahte notlar içeren bir kasa gösterilir ve gerçek içeriğiniz gizlenir. Bu veriler, yalnızca sahte parola özelliğini kullanmak istediğinizde saklanır.</li>
-                <li><strong>Tema Tercihi (`hesapp_theme_v1`):</strong> Seçtiğiniz açık/koyu tema tercihiniz. Bu, arayüzü kişiselleştirmek için kullanılır.</li>
-                <li><strong>Diğer Ayarlar:</strong> Kullanım koşulları onayı, hoş geldin ekranı durumu, otomatik kilitleme süresi gibi uygulama ayarlarınız.</li>
-            </ul>
-            <p>Bu verilerin hiçbiri kişisel kimliğinizi ortaya çıkarmaz ve cihazınızın dışına aktarılmaz.</p>
+            <p>Hesapp, işlevselliğini sağlamak için tarayıcınızın yerel depolama alanını kullanır. Bu alanda şifrelenmiş notlarınız, tema tercihiniz ve diğer uygulama ayarlarınız saklanır. Bu verilerin hiçbiri kişisel kimliğinizi ortaya çıkarmaz ve cihazınızın dışına aktarılmaz.</p>
             
             <h4>3. Kullanıcı Hakları ve Şifre Kurtarma</h4>
             <p class="no-recovery-warning">
@@ -259,7 +252,7 @@
 
   <div class="modal-backdrop" id="termsBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Hizmet Sözleşmesi</h3>
             <button class="security-close-btn" id="termsCloseBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -306,7 +299,7 @@
 
   <div class="modal-backdrop" id="aboutBackdrop" aria-hidden="true">
     <div class="modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 15px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Hakkında</h3>
             <button class="security-close-btn" id="aboutClose" title="Kapat">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -365,7 +358,7 @@
 
   <div class="modal-backdrop" id="autoLockModalBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Otomatik Kilitleme</h3>
             <button class="security-close-btn" id="autoLockCloseBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -381,7 +374,6 @@
             </div>
         </div>
         <div class="security-footer" style="display:flex; justify-content:flex-end; gap:10px;">
-            <button class="action-toggle-btn" id="autoLockCancelBtn">İptal</button>
             <button class="vault-btn" id="autoLockSaveBtn">Kaydet</button>
         </div>
     </div>
@@ -390,7 +382,7 @@
   <!-- Tema Ayarları Modal -->
   <div class="modal-backdrop" id="themeModalBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Tema</h3>
             <button class="security-close-btn" id="themeModalClose">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -406,7 +398,6 @@
             </div>
         </div>
         <div class="security-footer" style="display:flex; justify-content:flex-end; gap:10px;">
-            <button class="action-toggle-btn" id="themeModalCancelBtn">İptal</button>
             <button class="vault-btn" id="themeModalSaveBtn">Kaydet</button>
         </div>
     </div>
@@ -414,8 +405,14 @@
 
   <div class="modal-backdrop" id="changePasswordBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Parola Değiştir</h3>
+            <button class="security-close-btn" id="changePassCloseBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
+                    <path fill="#fff" d="M10.28 9.22a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" />
+                </svg>
+            </button>
         </div>
         <div class="modal-scroll-content">
             <div class="field"><label>Mevcut Parola:</label><input id="currentPass" type="password" autocomplete="off"></div> 
@@ -424,7 +421,6 @@
             <div class="note" id="changePassNote"></div>
         </div>
         <div class="security-footer" style="display:flex; justify-content:flex-end; gap:10px;">
-            <button class="action-toggle-btn" id="changePassCancelBtn">İptal</button>
             <button class="vault-btn" id="changePassSaveBtn">Parolayı Değiştir</button>
         </div>
     </div>
@@ -432,7 +428,7 @@
 
   <div class="modal-backdrop" id="honeyPasswordBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Sahte Parola Yönetimi</h3>
             <button class="security-close-btn" id="honeyPassCloseBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -457,18 +453,23 @@
             <div id="honeyPassStatus" style="margin-top: 15px; padding: 10px; border-radius: 8px; background: var(--key-bg); font-size: 14px; color: var(--input-text);"></div>
             <div class="note" id="honeyPassNote"></div>
         </div>
-        <div class="security-footer" style="display: flex; gap: 10px;">
-            <button class="vault-btn" id="honeyPassDeleteBtn" style="flex: 1; background: var(--delete-btn);">Sil</button>
-            <button class="vault-btn" id="honeyPassCancelBtn" style="flex: 1;">İptal</button>
-            <button class="vault-btn" id="honeyPassSaveBtn" style="flex: 1;">Kaydet</button>
+        <div class="security-footer" style="display: flex; gap: 10px; justify-content: space-between;">
+            <button class="vault-btn" id="honeyPassDeleteBtn" style="background: var(--delete-btn);">Sil</button>
+            <button class="vault-btn" id="honeyPassSaveBtn">Kaydet</button>
         </div>
     </div>
   </div>
 
   <div class="modal-backdrop" id="appearanceModalBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Açılış Ekranı Ayarları</h3>
+            <button class="security-close-btn" id="appearanceCloseBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
+                    <path fill="#fff" d="M10.28 9.22a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" />
+                </svg>
+            </button>
         </div>
         <div class="modal-scroll-content">
             <div class="toggle-setting">
@@ -483,7 +484,6 @@
             </p>
         </div>
         <div class="security-footer" style="display:flex; justify-content:flex-end; gap:10px;">
-            <button class="action-toggle-btn" id="appearanceCancelBtn">İptal</button>
             <button class="vault-btn" id="appearanceSaveBtn">Kaydet</button>
         </div>
     </div>
@@ -491,7 +491,7 @@
 
   <div class="modal-backdrop" id="howToUseBackdrop" aria-hidden="true">
     <div class="modal security-modal">
-        <div class="modal-header" style="justify-content: space-between; margin-bottom: 5px;">
+        <div class="modal-header" style="justify-content: space-between;">
             <h3 style="margin: 0; text-align: left; flex-grow: 1;">Nasıl Kullanılır?</h3>
             <button class="security-close-btn" id="howToUseClose">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -513,19 +513,10 @@
                 <li><strong>Yedekleme:</strong> Tüm kasanızın şifreli bir yedeğini bilgisayarınıza indirerek verilerinizi güvence altına alın.</li>
                 <li><strong>Geri Yükleme:</strong> Daha önce aldığınız bir yedek dosyasını seçerek kasanızı o duruma geri getirin. <strong>Dikkat:</strong> Bu işlem mevcut kasanızdaki tüm verileri siler.</li>
                 <li><strong>Parola Değiştirme:</strong> Mevcut parolanızı doğrulayarak kasanızın şifreleme anahtarını yenileyin.</li>
-                <li><strong>Sahte Parola:</strong> Gerçek kasanızı gizlemek için sahte parola belirleyin. Sahte parola ile giriş yapıldığında, boş bir kasa gösterilir ve gerçek içeriğiniz gizlenir.</li>
             </ul>
 
             <h3>Güvenlik ve Otomasyon</h3>
             <p>Parolanız, verilerinizin tek anahtarıdır ve asla kurtarılamaz. Ayarlar menüsünden, kasanızın ne kadar süre işlem yapılmadığında otomatik olarak kilitleneceğini belirleyebilirsiniz. Bu, siz unutsanız bile güvenliğinizi sağlar.</p>
-
-            <h3>Sahte Parola (Honey Password)</h3>
-            <p>Hesapp, gerçek kasanızı gizlemek için <strong>sahte parola</strong> özelliği sunar. Sahte parola ile giriş yapıldığında, boş bir kasa gösterilir ve gerçek içeriğiniz gizlenir. Bu özellik, özellikle zorla parola söyleme durumlarında gerçek verilerinizi korumanıza yardımcı olur.</p>
-            <ul>
-                <li><strong>Ayarlama:</strong> Ayarlar menüsünden "Sahte Parola" seçeneğine tıklayarak sahte parolanızı belirleyebilirsiniz.</li>
-                <li><strong>Kullanım:</strong> Sahte parola ile giriş yapıldığında, boş veya sahte notlar içeren bir kasa açılır. Gerçek kasa içeriğiniz gizlenir.</li>
-                <li><strong>Güvenlik:</strong> Sahte parola, gerçek parolanızdan farklı olmalıdır ve ayrı bir şifrelenmiş kasa olarak saklanır.</li>
-            </ul>
         </div>
         <div class="security-footer">
             <button class="vault-btn" id="howToUseOK" style="width: 100%;">Anladım</button>
@@ -585,8 +576,8 @@
 
         <div class="settings-option" id="settingsAutoLock">
           <div class="settings-option-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
           <div class="settings-option-content">
@@ -788,123 +779,14 @@
   </div>
 
   <!-- Welcome Page -->
-  <div id="welcome-page" class="welcome-page bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200" style="display: none;">
+  <div id="welcome-page" class="welcome-page text-gray-800 dark:text-gray-200" style="display: none;">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Page-like content containers (initially hidden) -->
-        <div id="welcome-page-content-privacy" class="welcome-page-content" style="display: none;">
-            <header class="absolute top-0 left-0 right-0 z-10 p-4 sm:px-8">
-                <div class="mx-auto flex max-w-5xl items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center">
-                            <svg width="40" height="40" viewBox="0 0 264.58333 264.58333" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><g><rect fill="#ffffff" width="263.47" height="263.47" x="0.67" y="0.6" ry="60.85" rx="60.85"></rect><rect fill="#cccccc" width="220.09" height="70.96" x="22.36" y="25.77" ry="29.56" rx="30.4"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="173.86" y="111.56" ry="26.46" rx="26.46"></rect><rect fill="#ff9500" width="68.59" height="59.51" x="173.86" y="180.65" ry="26.46" rx="26.46"></rect></g></svg>
-                        </div>
-                        <h2 class="text-xl font-bold leading-tight tracking-tighter text-gray-900 dark:text-white">Hesapp</h2>
-                    </div>
-                </div>
-            </header>
-            <div class="welcome-page-body">
-                <div class="welcome-page-header">
-                    <button class="welcome-page-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
-                        <span>Geri</span>
-                    </button>
-                    <h3>Gizlilik Politikası</h3>
-                </div>
-                <h3>Özet: Gizliliğiniz Bizim İçin Esastır</h3>
-                <p>Verileriniz size aittir. Hesapp, "sıfır bilgi" (zero-knowledge) prensibiyle çalışır. Girdiğiniz notlar ve tercihleriniz, <strong class="security-highlight">yalnızca sizin cihazınızda şifrelenir</strong> ve bize veya herhangi bir üçüncü tarafa <strong class="security-highlight">asla gönderilmez.</strong></p>
-                <hr>
-                <h3>Teknik Güvenlik Detayları (Nasıl Koruyoruz?)</h3>
-                <p>Notlarınız, endüstri standardı olan <strong>AES-GCM</strong> şifreleme algoritmasıyla korunur. Bu şifrelemeyi gerçekleştirecek anahtar ise, parolanızdan <strong>PBKDF2 (600.000 iterasyon)</strong> algoritması kullanılarak türetilir. Bu yöntemler, şifrenizi sadece siz bildiğiniz sürece, şifrelenmiş verilere erişimi <strong>teknik olarak imkansız</strong> kılar.</p>
-                <hr>
-                <h3>Resmi Gizlilik Politikası</h3>
-                <p><strong>Son Güncelleme:</strong> 11.10.2025</p>
-                <h4>1. Veri Sorumlusu</h4>
-                <p>Hesapp uygulamasının veri sorumlusu Hüseyin Açıkgöz'dür. Bu sorumluluk, uygulamanın kullanıcının cihazı üzerinde gerçekleştirdiği veri işleme faaliyetleriyle sınırlıdır.</p>
-                <h4>2. İşlenen Veriler ve Amaçları</h4>
-                <p>Hesapp, işlevselliğini sağlamak için tarayıcınızın yerel depolama (`localStorage`) alanını kullanır. Bu alanda şifrelenmiş notlarınız, tema tercihiniz ve diğer uygulama ayarlarınız saklanır. Bu verilerin hiçbiri kişisel kimliğinizi ortaya çıkarmaz ve cihazınızın dışına aktarılmaz.</p>
-                <h4>3. Kullanıcı Hakları ve Şifre Kurtarma</h4>
-                <p class="no-recovery-warning" style="font-weight: normal; background: transparent; border: none; padding: 0; color: var(--prose-text);">"Sıfır bilgi" prensibi gereği, parolanız asla saklanmaz veya bilinmez. Bu, yüksek bir güvenlik seviyesi sağlarken, aynı zamanda <strong>unutulan bir parolanın kurtarılamayacağı</strong> anlamına gelir. Parolanızı unutmanız durumunda verilerinize erişim kalıcı olarak kaybolur.</p>
-            </div>
-        </div>
-
-        <div id="welcome-page-content-terms" class="welcome-page-content" style="display: none;">
-            <header class="absolute top-0 left-0 right-0 z-10 p-4 sm:px-8">
-                <div class="mx-auto flex max-w-5xl items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center">
-                            <svg width="40" height="40" viewBox="0 0 264.58333 264.58333" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><g><rect fill="#ffffff" width="263.47" height="263.47" x="0.67" y="0.6" ry="60.85" rx="60.85"></rect><rect fill="#cccccc" width="220.09" height="70.96" x="22.36" y="25.77" ry="29.56" rx="30.4"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="173.86" y="111.56" ry="26.46" rx="26.46"></rect><rect fill="#ff9500" width="68.59" height="59.51" x="173.86" y="180.65" ry="26.46" rx="26.46"></rect></g></svg>
-                        </div>
-                        <h2 class="text-xl font-bold leading-tight tracking-tighter text-gray-900 dark:text-white">Hesapp</h2>
-                    </div>
-                </div>
-            </header>
-            <div class="welcome-page-body">
-                <div class="welcome-page-header">
-                    <button class="welcome-page-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
-                        <span>Geri</span>
-                    </button>
-                    <h3>Hizmet Sözleşmesi</h3>
-                </div>
-                <p>Bu sözleşme, Hesapp uygulamasını ("Hizmet") kullanımınıza ilişkin şartları ve koşulları düzenler. Hizmeti kullanarak bu koşulları kabul etmiş sayılırsınız.</p>
-                <h4>1. Hizmetin Kapsamı</h4>
-                <p>Hesapp, bir hesap makinesi arayüzü altında, verilerinizi cihazınızda yerel olarak şifreleyen bir not saklama hizmeti sunar. Hizmet, "sıfır bilgi" (zero-knowledge) prensibiyle çalışır.</p>
-                <h4>2. Kullanıcı Yükümlülükleri</h4>
-                <p>Kasa parolanızın güvenliği, saklanması ve yedeklenmesi <strong>tamamen sizin sorumluluğunuzdadır.</strong> Parolanızı unutmanız durumunda verileriniz <strong>kalıcı olarak kaybolur ve kurtarılamaz.</strong></p>
-                <h4>3. Garanti Reddi ve Sorumluluğun Sınırlandırılması</h4>
-                <p>Hizmet, "olduğu gibi" sunulmaktadır. Geliştirici, Hizmetin kesintisiz veya hatasız olacağını garanti etmez. Uygulamanın kullanımından, veri kaybından veya güvenlik ihlallerinden kaynaklanabilecek hiçbir zarardan Geliştirici sorumlu tutulamaz.</p>
-                <h4>4. Sözleşmenin Kabulü</h4>
-                <p>Hesapp uygulamasını kullanarak veya kasa için bir şifre oluşturarak, bu Hizmet Sözleşmesi'nin tüm şartlarını okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan edersiniz.</p>
-            </div>
-        </div>
-
-        <div id="welcome-page-content-about" class="welcome-page-content" style="display: none;">
-            <header class="absolute top-0 left-0 right-0 z-10 p-4 sm:px-8">
-                <div class="mx-auto flex max-w-5xl items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center">
-                            <svg width="40" height="40" viewBox="0 0 264.58333 264.58333" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><g><rect fill="#ffffff" width="263.47" height="263.47" x="0.67" y="0.6" ry="60.85" rx="60.85"></rect><rect fill="#cccccc" width="220.09" height="70.96" x="22.36" y="25.77" ry="29.56" rx="30.4"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="22.36" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="110.43" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="98.11" y="178.39" ry="26.46" rx="26.46"></rect><rect fill="#b3b3b3" width="68.59" height="59.51" x="173.86" y="111.56" ry="26.46" rx="26.46"></rect><rect fill="#ff9500" width="68.59" height="59.51" x="173.86" y="180.65" ry="26.46" rx="26.46"></rect></g></svg>
-                        </div>
-                        <h2 class="text-xl font-bold leading-tight tracking-tighter text-gray-900 dark:text-white">Hesapp</h2>
-                    </div>
-                </div>
-            </header>
-            <div class="welcome-page-body">
-                <div class="welcome-page-header">
-                    <button class="welcome-page-back-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
-                        <span>Geri</span>
-                    </button>
-                    <h3>Hakkında</h3>
-                </div>
-                <div class="about-logo" style="margin: 20px auto;">
-                    <svg viewBox="0 0 264.58333 264.58333" xmlns="http://www.w3.org/2000/svg"><g><rect style="fill:#ffffff;fill-opacity:1" width="263.47" height="263.47" x="0.67" y="0.6" ry="60.85" rx="60.85"></rect><rect style="fill:#cccccc;fill-opacity:1" width="220.09" height="70.96" x="22.36" y="25.77" ry="29.56" rx="30.4"></rect><rect style="fill:#b3b3b3;fill-opacity:1" width="68.59" height="59.51" x="22.36" y="110.43" ry="26.46" rx="26.46"></rect><rect style="fill:#b3b3b3;fill-opacity:1" width="68.59" height="59.51" x="22.36" y="178.39" ry="26.46" rx="26.46"></rect><rect style="fill:#b3b3b3;fill-opacity:1" width="68.59" height="59.51" x="98.11" y="110.43" ry="26.46" rx="26.46"></rect><rect style="fill:#b3b3b3;fill-opacity:1" width="68.59" height="59.51" x="98.11" y="178.39" ry="26.46" rx="26.46"></rect><rect style="fill:#b3b3b3;fill-opacity:1" width="68.59" height="59.51" x="173.86" y="111.56" ry="26.46" rx="26.46"></rect><rect style="fill:#ff9500;fill-opacity:1" width="68.59" height="59.51" x="173.86" y="180.65" ry="26.46" rx="26.46"></rect></g></svg>
-                </div>
-                <h2 class="about-title" style="text-align: center;">Hesapp</h2>
-                <div class="about-version" style="text-align: center;"></div>
-                <p style="text-align: center; max-width: 600px; margin: 0 auto 30px auto;">
-                    <strong>Hesapp</strong>, standart bir hesap makinesi işlevselliğini, güçlü şifreleme ile korunan kişisel bir not kasasıyla birleştiren minimalist bir web uygulamasıdır.
-                </p>
-                <div class="about-footer" style="max-width: 600px; margin: 0 auto;">
-                    <div class="developer-info">
-                        <a href="https://huseyinacikgoz.com.tr" target="_blank" class="developer-name-link"><span class="footer-label">Geliştirici</span><span class="developer-name">Hüseyin Açıkgöz</span></a>
-                    </div>
-                    <div class="all-links">
-                        <a href="https://huseyinacikgoz.com.tr" target="_blank" title="Website"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg></a>
-                        <a href="mailto:mail@huseyinacikgoz.com.tr" title="E-posta"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg></a>
-                        <a href="https://x.com/huseyinacikgoz_" target="_blank" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-                        <a href="https://github.com/huseyinacikgoz" target="_blank" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div id="welcome-main-content">
         <!-- Header -->
-        <header class="absolute top-0 left-0 right-0 z-10 p-4 sm:px-8">
+        <header class="absolute top-4 sm:top-6 left-0 right-0 z-10 px-4 py-2 sm:px-8 sm:py-3">
             <div class="mx-auto flex max-w-5xl items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center">
+                    <div class="flex h-10 w-10 sm:h-9 sm:w-9 flex-shrink-0 items-center justify-center">
                         <svg width="40" height="40" viewBox="0 0 264.58333 264.58333" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
                             <g>
                                 <rect fill="#ffffff" width="263.47" height="263.47" x="0.67" y="0.6" ry="60.85" rx="60.85"></rect>
@@ -920,31 +802,60 @@
                     </div>
                     <h2 class="text-xl font-bold leading-tight tracking-tighter text-gray-900 dark:text-white">Hesapp</h2>
                 </div>
+                <!-- Hamburger Menu Button - Inside Header -->
+                <button id="welcome-hamburger-btn" class="flex items-center justify-center p-2 sm:w-11 sm:h-11 sm:rounded-full sm:backdrop-blur-md sm:bg-white/90 sm:dark:bg-[#24283b]/95 sm:border sm:border-gray-200/50 sm:dark:border-gray-700/50 sm:shadow-md sm:hover:shadow-lg sm:hover:scale-105 sm:active:scale-95 transition-all duration-200 cursor-pointer group" aria-label="Menü">
+                    <svg id="welcome-hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <svg id="welcome-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 hidden">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
         </header>
 
+        <!-- Hamburger Menu Dropdown -->
+        <nav id="welcome-hamburger-menu" class="fixed right-4 sm:right-8 top-24 sm:top-28 z-50 flex-col gap-2 p-2 backdrop-blur-md bg-white/95 dark:bg-[#24283b] border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl welcome-hamburger-menu hidden">
+            <a href="#top" class="welcome-menu-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-[#414868] hover:text-blue-700 dark:hover:text-[#82aaff] active:bg-blue-200 dark:active:bg-[#565f89] transition-all duration-200 cursor-pointer group">
+                <span class="material-symbols-outlined text-lg group-hover:scale-110 group-active:scale-95 transition-transform duration-200">home</span>
+                <span class="welcome-menu-text">Hesapp</span>
+            </a>
+            <a href="#neden-hesapp" class="welcome-menu-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-[#414868] hover:text-blue-700 dark:hover:text-[#82aaff] active:bg-blue-200 dark:active:bg-[#565f89] transition-all duration-200 cursor-pointer group">
+                <span class="material-symbols-outlined text-lg group-hover:scale-110 group-active:scale-95 transition-transform duration-200">info</span>
+                <span class="welcome-menu-text">Neden Hesapp?</span>
+            </a>
+            <a href="#ucretlendirme" class="welcome-menu-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-[#414868] hover:text-blue-700 dark:hover:text-[#82aaff] active:bg-blue-200 dark:active:bg-[#565f89] transition-all duration-200 cursor-pointer group">
+                <span class="material-symbols-outlined text-lg group-hover:scale-110 group-active:scale-95 transition-transform duration-200">payments</span>
+                <span class="welcome-menu-text">Ücretlendirme</span>
+            </a>
+            <a href="#ekibimiz" class="welcome-menu-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-[#414868] hover:text-blue-700 dark:hover:text-[#82aaff] active:bg-blue-200 dark:active:bg-[#565f89] transition-all duration-200 cursor-pointer group">
+                <span class="material-symbols-outlined text-lg group-hover:scale-110 group-active:scale-95 transition-transform duration-200">groups</span>
+                <span class="welcome-menu-text">Ekibimiz</span>
+            </a>
+        </nav>
+
         <!-- Hero Section -->
-        <main class="relative flex flex-1 items-center justify-center px-4 py-24 sm:py-32 overflow-hidden">
-            <!-- Gradient Background -->
+        <main id="top" class="relative flex flex-1 items-center justify-center px-4 py-24 sm:py-32 overflow-hidden">
+            <!-- Gradient Background - Light mode only -->
             <div class="absolute inset-0 -z-10">
-                <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#ff9500]/10 dark:bg-[#ff9500]/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/10 dark:hidden rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 dark:hidden rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             </div>
             
             <div class="relative flex flex-col items-center justify-center text-center z-10">
                 <!-- Floating Feature Widgets -->
                 <div class="absolute inset-0 -z-10 hidden h-full w-full sm:block">
                     <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 lg:-translate-x-2/3 lg:-translate-y-1/3 animate-float">
-                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 5s;">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff9500] dark:bg-orange-600 text-white shadow-lg">
+                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-[#24283b]/95 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 5s;">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg">
                                 <span class="material-symbols-outlined text-lg">calculate</span>
                             </div>
                             <p class="text-sm font-bold text-gray-900 dark:text-white">Hesap Makinesi</p>
                         </div>
                     </div>
                     <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 lg:translate-x-2/3 lg:-translate-y-1/3 animate-float" style="animation-delay: -2s;">
-                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 6s;">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500 dark:bg-blue-600 text-white shadow-lg">
+                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-[#24283b]/95 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 6s;">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg">
                                 <span class="material-symbols-outlined text-lg">lock</span>
                             </div>
                             <div class="text-left">
@@ -954,16 +865,16 @@
                         </div>
                     </div>
                     <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 lg:-translate-x-2/3 lg:translate-y-1/3 animate-float" style="animation-delay: -4s;">
-                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 7s;">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-500 dark:bg-green-600 text-white shadow-lg">
+                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-[#24283b]/95 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 7s;">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg">
                                 <span class="material-symbols-outlined text-lg">shield</span>
                             </div>
                             <p class="text-sm font-bold text-gray-900 dark:text-white">Cihazda Şifreleme</p>
                         </div>
                     </div>
                     <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 lg:translate-x-2/3 lg:translate-y-1/3 animate-float" style="animation-delay: -6s;">
-                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 8s;">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500 dark:bg-purple-600 text-white shadow-lg">
+                        <div class="flex items-center gap-3 rounded-2xl backdrop-blur-md bg-white/80 dark:bg-[#24283b]/95 border border-gray-200/50 dark:border-gray-700/50 p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-pulse" style="animation-duration: 8s;">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg">
                                 <span class="material-symbols-outlined text-lg">no_accounts</span>
                             </div>
                             <div class="text-left">
@@ -989,11 +900,16 @@
                     </svg>
                 </div>
                 <!-- Main Content -->
-                <h1 class="text-4xl font-black leading-tight tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl lg:text-6xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-6">
-                    Hesap Makinesi &amp;<br class="hidden sm:block" /> Gizli Kasa
-                </h1>
+                <div class="flex flex-col items-center gap-3 mb-6">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white opacity-80">
+                        Hesapp
+                    </h2>
+                    <h1 class="text-3xl font-black leading-tight tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                        Hesap Makinesi &amp;<br class="hidden sm:block" /> Gizli Kasa
+                    </h1>
+                </div>
                 <p class="mt-2 max-w-2xl text-lg text-gray-700 dark:text-gray-300 sm:text-xl font-medium leading-relaxed">
-                    <strong class="text-[#ff9500] dark:text-orange-400">Hesapp</strong>, basit bir hesap makinesi arayüzünün ardında, notlarınızı güvende tutan şifreli bir kasa gizler.
+                    Günlük hesaplamalarınız için basit bir hesap makinesi ve hassas notlarınız için güvenli bir kasa sunar. Tüm verileriniz yalnızca cihazınızda şifrelenir ve asla internete gönderilmez.
                 </p>
                 <button id="welcomeClose" class="group mt-12 flex cursor-pointer items-center justify-center rounded-full h-16 px-10 pr-12 bg-gradient-to-r from-[#ff9500] to-orange-600 text-white text-base font-bold tracking-wide shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 relative">
                     <span class="relative z-10 flex items-center gap-2 whitespace-nowrap">
@@ -1008,64 +924,257 @@
         </main>
 
         <!-- Feature Section -->
-        <section class="w-full pt-8 pb-16 sm:pt-12 sm:pb-24">
+        <section id="neden-hesapp" class="w-full pt-8 pb-16 sm:pt-12 sm:pb-24">
             <div class="container mx-auto max-w-5xl px-4">
                 <div class="flex flex-col gap-10">
                     <div class="flex flex-col gap-4 text-center">
                         <h2 class="text-4xl font-black leading-normal tracking-tight text-gray-900 dark:text-white sm:text-5xl pb-2">
-                            Gizliliğiniz, Tamamen Sizin Kontrolünüzde
+                            Neden Hesapp?
                         </h2>
                         <p class="mx-auto max-w-2xl text-lg text-gray-700 dark:text-gray-300 font-medium leading-relaxed">
-                            Hesapp, "sıfır bilgi" prensibiyle çalışır. Notlarınız, endüstri standardı <strong class="text-[#ff9500] dark:text-orange-400">AES-GCM</strong> ile şifrelenir. Bu şifreleme anahtarı, parolanızdan <strong class="text-[#ff9500] dark:text-orange-400">PBKDF2 (600.000 iterasyon)</strong> kullanılarak türetilir. Tüm verileriniz cihazınızda kalır ve bize veya herhangi bir üçüncü tarafa asla gönderilmez.
+                            Hesapp, güvenlik ve gizliliği ön planda tutan, modern bir hesap makinesi ve not kasası uygulamasıdır. Verileriniz yalnızca sizin cihazınızda saklanır ve endüstri standardı şifreleme ile korunur.
                         </p>
                     </div>
-                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/80 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[#ff9500] dark:bg-orange-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <span class="material-symbols-outlined text-3xl">calculate</span>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">calculate</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Basit Hesap Makinesi</h3>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Minimalist Hesap Makinesi</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Tüm temel aritmetik ihtiyaçlarınız için temiz ve basit bir arayüz.</p>
-                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">Günlük hesaplamalarınız için hızlı ve kullanışlı bir arayüz. Toplama, çıkarma, çarpma, bölme ve yüzde işlemleri.</p>
                         </div>
-                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/80 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500 dark:bg-blue-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <span class="material-symbols-outlined text-3xl">lock</span>
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">shield_lock</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Güçlü Şifreleme</h3>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Güvenli Not Kasası</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Hassas düşüncelerinizi ve rakamlarınızı güçlü şifreleme ile güvende tutun.</p>
-                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">AES-GCM şifreleme ve PBKDF2 (600.000 iterasyon) ile notlarınız maksimum güvenlikle korunur. Zero-knowledge mimarisi sayesinde verileriniz yalnızca sizde.</p>
                         </div>
-                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/80 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-green-500 dark:bg-green-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <span class="material-symbols-outlined text-3xl">shield_lock</span>
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">hide_source</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Gizli Erişim</h3>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Gizli Tetikleme</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Kasayı açmak için hesap makinesindeki <strong class="fake-button-equals">=</strong> tuşuna 3 kez basın.</p>
-                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">Dışarıdan bakıldığında sadece bir hesap makinesi. Kasaya erişmek için <strong class="fake-button-equals">=</strong> tuşuna 3 kez basın.</p>
                         </div>
-                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-gray-900/80 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-500 dark:bg-purple-600 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <span class="material-symbols-outlined text-3xl">cloud_off</span>
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Sahte Parola</h3>
                             </div>
-                            <div class="flex flex-col gap-2">
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Yükle & Çevrimdışı Kullan</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Uygulamayı ana ekranınıza ekleyerek internet bağlantısı olmadan da tam erişim sağlayın.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">Gerçek kasayı gizlemek için sahte parola özelliği. Zorla parola söyleme durumlarında gerçek içeriğiniz korunur.</p>
+                        </div>
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">storage</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Yerel Depolama</h3>
                             </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">Tüm verileriniz cihazınızda saklanır. Hiçbir veri sunucuya gönderilmez veya bulutta saklanmaz. Tam kontrol sizde.</p>
+                        </div>
+                        <div class="group flex flex-col gap-4 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 bg-white/80 dark:bg-[#24283b]/95 p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center gap-5">
+                                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-2xl">cloud_download</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Yedekleme & Geri Yükleme</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center mt-2">Şifrelenmiş yedeklerinizi indirin veya geri yükleyin. Verilerinizi güvenle yedekleyin ve istediğiniz zaman geri getirin.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Pricing Section -->
+        <section id="ucretlendirme" class="w-full py-16 sm:py-24">
+            <div class="container mx-auto max-w-6xl px-4">
+                <div class="flex flex-col gap-10">
+                    <div class="flex flex-col gap-4 text-center">
+                        <h2 class="text-4xl font-black leading-normal tracking-tight text-gray-900 dark:text-white sm:text-5xl pb-2">
+                            Ücretlendirme
+                        </h2>
+                        <p class="mx-auto max-w-2xl text-lg text-gray-700 dark:text-gray-300 font-medium leading-relaxed">
+                            Hesapp tamamen ücretsizdir. Tüm özellikler herkese açıktır.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto items-stretch">
+                        <!-- Ücretsiz Plan -->
+                        <div class="pricing-card flex flex-col rounded-2xl backdrop-blur-md border-2 border-gray-300/50 dark:border-gray-600/50 bg-white/90 dark:bg-[#24283b]/95 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer h-full" data-plan="free">
+                            <div class="flex flex-col gap-4 h-full">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Ücretsiz</h3>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-3xl font-black text-gray-900 dark:text-white">₺0</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">/her zaman</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    Hesapp'in tüm özelliklerine tam erişim. Hiçbir kısıtlama yok. Sınırsız not ekleyebilir, güvenle saklayabilir ve istediğiniz zaman yedekleyebilirsiniz.
+                                </p>
+                                <ul class="flex flex-col gap-3 mt-4 flex-1">
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Sınırsız not saklama - İstediğiniz kadar not ekleyebilirsiniz</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Güçlü şifreleme - AES-GCM ile endüstri standardı koruma</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Yedekleme ve geri yükleme - Verilerinizi güvenle yedekleyin</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Tüm güvenlik özellikleri - Sahte parola, otomatik kilitleme ve daha fazlası</span>
+                                    </li>
+                                </ul>
+                                <button class="pricing-btn w-full mt-auto px-6 py-3 bg-gradient-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 text-white font-semibold rounded-xl hover:from-gray-500 hover:to-gray-600 dark:hover:from-gray-700 dark:hover:to-gray-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                    Başla - Ücretsiz
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Premium Plan -->
+                        <div class="pricing-card flex flex-col rounded-2xl backdrop-blur-md border-2 border-gray-300/50 dark:border-gray-600/50 bg-white/90 dark:bg-[#24283b]/95 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden h-full" data-plan="premium">
+                            <div class="absolute top-0 right-0 bg-blue-500 dark:bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">
+                                POPÜLER
+                            </div>
+                            <div class="flex flex-col gap-4 mt-4 h-full">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Premium</h3>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-3xl font-black text-blue-600 dark:text-blue-500">₺99</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">/tek seferlik</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    Ücretsiz planın tüm özelliklerine sahipsiniz. Ek olarak, uygulamanın geliştirilmesine ve iyileştirilmesine katkıda bulunuyorsunuz. Geliştiriciye destek olmak için harika bir yol.
+                                </p>
+                                <ul class="flex flex-col gap-3 mt-4 flex-1">
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Ücretsiz planın tüm özellikleri - Hiçbir kısıtlama yok</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Geliştiriciye destek - Proje gelişimine katkı</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5 text-xl">check_circle</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Uygulamanın geliştirilmesine katkı - Yeni özellikler için destek</span>
+                                    </li>
+                                </ul>
+                                <button class="pricing-btn w-full mt-auto px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                    Premium'u Seç
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pro Plan (Geliştiriciye Destek) -->
+                        <div class="pricing-card flex flex-col rounded-2xl backdrop-blur-md border-2 border-gray-300/50 dark:border-gray-600/50 bg-white/90 dark:bg-[#24283b]/95 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden h-full" data-plan="pro">
+                            <div class="absolute top-0 right-0 bg-[#ff9500] dark:bg-orange-600 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">
+                                ÖNERİLEN
+                            </div>
+                            <div class="flex flex-col gap-4 mt-4 h-full">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Pro</h3>
+                                    <div class="flex flex-col items-end">
+                                        <span class="text-3xl font-black text-[#ff9500] dark:text-orange-500">₺999</span>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">/tek seferlik</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    En büyük destek paketi. Uygulamanın geliştirilmesine, iyileştirilmesine ve gelecekteki özelliklerin eklenmesine maksimum katkıda bulunuyorsunuz. Geliştiriciye en fazla destek sağlayan plan.
+                                </p>
+                                <ul class="flex flex-col gap-3 mt-4 flex-1">
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-[#ff9500] flex-shrink-0 mt-0.5 text-xl">star</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Premium planın tüm özellikleri - Tüm avantajlara sahipsiniz</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-[#ff9500] flex-shrink-0 mt-0.5 text-xl">star</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Maksimum geliştirici desteği - En yüksek katkı seviyesi</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="material-symbols-outlined text-[#ff9500] flex-shrink-0 mt-0.5 text-xl">star</span>
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Uygulamanın geliştirilmesine büyük katkı - Yeni özellikler için öncelikli destek</span>
+                                    </li>
+                                </ul>
+                                <button class="pricing-btn w-full mt-auto px-6 py-3 bg-gradient-to-r from-[#ff9500] to-orange-600 text-white font-semibold rounded-xl hover:from-orange-600 hover:to-[#ff9500] transition-all duration-200 shadow-lg hover:shadow-xl">
+                                    Pro'yu Seç
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 mt-12">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
+                            💡 <strong>Not:</strong> Hesapp tamamen ücretsizdir. Tüm özellikler herkese açıktır. Yukarıdaki planlar geliştiriciye destek olmak içindir.
+                        </p>
+                        
+                        <!-- Ekibimiz Bölümü -->
+                        <div id="ekibimiz" class="flex flex-col items-center gap-6 mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 w-full max-w-2xl">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Ekibimiz</h3>
+                            <div class="flex flex-wrap items-center justify-center gap-12">
+                                <!-- Gemini -->
+                                <div class="flex flex-col items-center gap-3 group">
+                                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gray-200 dark:bg-[#24283b] shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-700 dark:text-gray-300">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">Gemini</span>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 text-center">AI Asistan</p>
+                                </div>
+                                
+                                <!-- Hüseyin Açıkgöz -->
+                                <div class="flex flex-col items-center gap-3 group">
+                                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gray-200 dark:bg-[#24283b] shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-700 dark:text-gray-300">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">Hüseyin Açıkgöz</span>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 text-center">Geliştirici</p>
+                                </div>
+                                
+                                <!-- Cursor -->
+                                <div class="flex flex-col items-center gap-3 group">
+                                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gray-200 dark:bg-[#24283b] shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-700 dark:text-gray-300">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">Cursor</span>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 text-center">AI Editor</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 text-center max-w-md mt-2">
+                                Hesapp, Hüseyin Açıkgöz tarafından Google Gemini ve Cursor AI'nin gücüyle geliştirilmiştir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="w-full py-8">
             <div class="container mx-auto flex flex-col items-center justify-center gap-4 px-4 text-center">
                  <div class="flex flex-wrap items-start justify-start sm:justify-center gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold">Gizlilik Politikası</span>
-                    <span class="font-semibold">Hizmet Sözleşmesi</span>
-                    <span class="font-semibold">Hakkında</span>
+                    <button id="welcomePrivacyLink" class="welcome-footer-link">Gizlilik Politikası</button>
+                    <button id="welcomeTermsLink" class="welcome-footer-link">Hizmet Sözleşmesi</button>
+                    <button id="welcomeHowToUseLink" class="welcome-footer-link">Nasıl Kullanılır</button>
+                    <button id="welcomeAboutLink" class="welcome-footer-link">Hakkında</button>
                  </div>
                  <p class="text-sm text-gray-500 dark:text-gray-400">© 2025 Hesapp. Tüm hakları saklıdır.</p>
             </div>
@@ -1075,6 +1184,6 @@
   </div>
 
 <!-- Uygulama ana giriş noktası. type="module" modern tarayıcılarda ES6 modüllerini etkinleştirir. -->
-<script type="module" src="js/main.js?v=1.3.7"></script> 
+<script type="module" src="js/main.js?v=1.3.8"></script> 
 </body>
 </html>

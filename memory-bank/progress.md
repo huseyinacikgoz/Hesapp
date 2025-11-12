@@ -1,7 +1,7 @@
 # Progress: Hesapp
 
-## 1. Neler Çalışıyor? (Mevcut Durum - v1.3.7)
-*   **Sürüm:** `v1.3.7` (Tüm dosyalarda tutarlı)
+## 1. Neler Çalışıyor? (Mevcut Durum - v1.3.8)
+*   **Sürüm:** `v1.3.8` (Tüm dosyalarda tutarlı)
 *   **Kod Mimarisi:**
     *   Tüm JavaScript kodu, monolitik bir yapıdan modern, ES6 modüllerine dayalı bir mimariye geçirildi.
     *   Kod, işlevselliğe göre (`ui`, `calculator`, `vault`, `pwa`, `utils`) ayrı dosya ve klasörlere ayrılarak daha yönetilebilir hale getirildi.
@@ -40,10 +40,18 @@
     *   **Not Önceliklendirme (Favoriler):** Notları favori olarak işaretleme, görsel gösterim (yıldız ikonu), sıralama ve filtreleme (Tümü, Favoriler, Normal) özellikleri eklendi. Favori ekleme/çıkarma sadece not düzenleme ekranından yapılabilir.
     *   **Klavye Kısayolları:** Hesap makinesi (Enter/=, Backspace, Escape), kasa yönetimi (Ctrl/Cmd+N, Ctrl/Cmd+F, Ctrl/Cmd+S) ve modallar (Escape, Enter) için kapsamlı klavye kısayolları eklendi.
     *   **Modal UI/UX İyileştirmeleri:** Ayarlar ve bilgi modalları için modern, bottom sheet stili tasarım. Tüm modallarda kaydırma özelliği ve mobil uyumluluk. Footer boşluk sorunları düzeltildi. Küçük ekranlarda modallar ortalanarak açılıyor ve diğer modallarla aynı genişlikte görüntüleniyor.
-    *   **Başlık Hiyerarşisi:** Bilgi modallarındaki başlık boyutları ve hiyerarşisi düzeltildi. Modal başlığı (24px, font-weight: 800) en büyük, içerik başlıkları (h3: 18px, h4: 16px, h5: 14px) modal başlığından küçük olacak şekilde düzenlendi. Renk kontrastları ve okunabilirlik iyileştirildi.
+    *   **Modal Backdrop Click ile Kapatma:** Tüm modallara (kasa yönetimi, ayarlar, bilgi, güvenlik, hakkında, parola değiştir, sahte parola, tema, otomatik kilitleme, görünüm, onay modalları) backdrop (modal dışına) tıklayınca kapatma özelliği eklendi. Modal içeriğine tıklandığında kapanmayı önlemek için `stopPropagation()` kullanılıyor.
+    *   **Kasa Giriş Modal'ında Backdrop Click Koruması:** Kasa giriş modal'ı açıldığında ilk 5 saniye boyunca backdrop'a tıklayınca kapatma devre dışı bırakıldı. Bu, yanlışlıkla modal'ın kapanmasını önler.
+    *   **Input/Textarea Genişlik İyileştirmesi:** Modal içindeki input ve textarea alanlarının genişliği `calc(100% - 3px)` olarak ayarlandı. Bu, modal kenarlarından 3px boşluk bırakarak daha iyi bir görsel denge sağlar.
+    *   **Yedekleme Dosya Adı Formatı:** Yedekleme dosya adı formatı `hesapp-kasa-yedek-YYYY-MM-DD-HH-MM-SS.json` olarak güncellendi. Artık saat, dakika ve saniye bilgisi de dosya adına ekleniyor.
+    *   **Başlık Hiyerarşisi:** Bilgi modallarındaki başlık boyutları ve hiyerarşisi düzeltildi. Modal başlığı (20px, font-weight: 700) en büyük, içerik başlıkları (h3: 18px, h4: 16px, h5: 14px) modal başlığından küçük olacak şekilde düzenlendi. Renk kontrastları ve okunabilirlik iyileştirildi.
     *   **Google Analytics:** Kasa oluşturma, silme, giriş, not oluşturma/düzenleme/silme, yedekleme/geri yükleme gibi önemli kullanıcı etkileşimleri için Google Analytics event tracking eklendi.
     *   **Hata Yönetimi:** Tüm `alert()` kullanımları kaldırıldı, kullanıcı dostu hata mesajları ve toast bildirimleri eklendi. Console logları temizlendi.
     *   Arayüz, mobil ve masaüstü cihazlar için duyarlı (responsive) bir tasarıma sahiptir.
+    *   **Koyu Mod Tema Tutarlılığı:** Koyu modda tüm arka planlar sabit renk yapıldı. Ana arka plan `#1a1b26`, kartlar `#24283b`. Gradient'ler ve farklı renk tonları kaldırıldı. Tüm bölümler aynı sabit arka plan rengini kullanıyor.
+    *   **Hamburger Menü Tema Uyumluluğu:** Hamburger menü öğelerinin koyu mod renkleri tema değişkenleriyle uyumlu hale getirildi. Menü arka planı koyu modda `var(--panel)` (#24283b) olarak ayarlandı.
+    *   **Hesap Makinesi "=" Tuşu Efektleri:** "=" tuşunun arkasındaki efekt "Hadi Başlayalım" butonu gibi yapıldı. Gradient background, güçlü shadow efektleri, hover animasyonları ve scale efektleri eklendi.
+    *   **"Hakkında" Modal Logo:** Logo büyütüldü (90px desktop, 75px küçük ekran). Orijinal oranlar korunuyor.
 
 ## 2. Sonraki Adımlar (Yapılacaklar)
 *   Kullanıcı geri bildirimlerine göre ek UI/UX iyileştirmeleri
@@ -52,3 +60,13 @@
 
 ## 3. Bilinen Sorunlar
 *   Şu anda bilinen kritik sorun bulunmamaktadır.
+
+## 4. Yayın Hazırlık Durumu
+*   **Durum:** ✅ **Yayınlamaya Hazır**
+*   **Güvenlik:** Tüm kritik güvenlik açıkları düzeltildi. XSS koruması aktif. Şifreleme güçlü (AES-GCM + PBKDF2 600K iterasyon).
+*   **Kod Kalitesi:** Lint hataları yok. Versiyon tutarlılığı (v1.3.8). Modüler mimari.
+*   **Özellikler:** Tüm temel özellikler çalışıyor. PWA desteği aktif. Responsive tasarım.
+*   **Kontrol Edilmesi Gerekenler:**
+    *   `favicon/site.webmanifest` dosyasının varlığı (PWA için)
+    *   Sunucu tarafı güvenlik header'ları (CSP, X-Frame-Options, vb.) - önerilir
+    *   Cross-browser test - önerilir
