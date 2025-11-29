@@ -1,12 +1,12 @@
-# Hesapp
 
 <div align="center">
 
 ![Hesapp Logo](favicon/favicon-192x192.png)
 
+# Hesapp
 **Hesap Makinesi & Gizli Kasa**
 
-[🌐 Canlı Demo](https://huseyinacikgoz.com.tr/hesapp/) • [📧 İletişim](mailto:mail@huseyinacikgoz.com.tr) • [🐦 Twitter](https://x.com/huseyinacikgoz_) • [💻 GitHub](https://github.com/huseyinacikgoz)
+[🌐 Canlı Demo](https://huseyinacikgoz.com.tr/hesapp/) • [📧 İletişim](mailto:mail@huseyinacikgoz.com.tr) • [🐦 Twitter/X](https://x.com/huseyinacikgoz_) • [💻 GitHub](https://github.com/huseyinacikgoz)
 
 [![Sürüm](https://img.shields.io/badge/sürüm-v1.3.98-blue.svg)](https://huseyinacikgoz.com.tr/hesapp/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -180,7 +180,7 @@ Katkılarınızı bekliyoruz! Lütfen:
 
 - [🌐 Canlı Demo](https://huseyinacikgoz.com.tr/hesapp/)
 - [📧 İletişim](mailto:mail@huseyinacikgoz.com.tr)
-- [🐦 Twitter](https://x.com/huseyinacikgoz_)
+- [🐦 Twitter/X](https://x.com/huseyinacikgoz_)
 - [💻 GitHub](https://github.com/huseyinacikgoz)
 
 ---
